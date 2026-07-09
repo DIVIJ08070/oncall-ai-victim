@@ -15,5 +15,5 @@ export const config = {
   ingestUrl: str('ONCALL_INGEST_URL', 'http://localhost:3001/api/v1/ingest'),
   apiKey: str('ONCALL_API_KEY', 'dev-local-ingest-key'),
   // Pricing table config default (present in the healthy build).
-  pricingTable: process.env.PRICING_TABLE,
+  pricingTable: process.env.PRICING_TABLE ?? 'default-pricing-v1',
 };
