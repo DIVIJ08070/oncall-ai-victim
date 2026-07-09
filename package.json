@@ -1,0 +1,28 @@
+{
+  "name": "oncall-ai-victim",
+  "version": "1.0.0",
+  "private": true,
+  "description": "OnCall AI demo victim app — a small Express service with three switchable failure modes (null-ref / slow-db / config-error) that ships telemetry to the OnCall AI platform. Self-contained: no @oncall/* deps (telemetry is vendored).",
+  "type": "module",
+  "main": "dist/server.js",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "start": "node dist/server.js",
+    "dev": "tsx watch src/server.ts",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.25",
+    "@types/node": "^20.14.0",
+    "tsx": "^4.16.0",
+    "typescript": "~5.5.4",
+    "vitest": "^2.0.0"
+  }
+}

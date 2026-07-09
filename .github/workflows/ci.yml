@@ -1,0 +1,23 @@
+name: CI
+
+# Runs on every PR (e.g. the fix PRs OnCall AI opens) — install, build, test.
+# Gives reviewers a green check on the AI's proposed fix (SPEC §11).
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test

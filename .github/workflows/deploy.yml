@@ -1,0 +1,26 @@
+name: Deploy
+
+# Runs on push to main (i.e. when a fix PR is merged) — a real, visible deploy
+# job (FR-11). It builds + tests + "deploys". It cannot reach the laptop-hosted
+# victim; the OnCall AI platform's merge poller performs the local heal (SPEC §10.5).
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Test
+        run: npm test
+      - name: Deploy
+        run: echo "deployed $GITHUB_SHA"
