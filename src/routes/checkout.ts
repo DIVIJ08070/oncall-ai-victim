@@ -14,7 +14,7 @@ function getSessionCart(req: Request): Cart {
 checkoutRouter.post('/', (req, res) => {
   const bodyItems = ((req.body ?? {}) as { cart?: Cart }).cart?.items;
   // Null guard: tolerate a missing session cart, fall back to the request body.
-  const items = getSessionCart(req)?.items ?? bodyItems ?? [];
+  const items = getSessionCart(req).items ?? bodyItems ?? [];
 
   const total = items.reduce((sum, it) => sum + it.qty * it.price, 0);
   res.status(200).json({
